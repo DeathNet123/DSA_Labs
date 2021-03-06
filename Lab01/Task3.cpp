@@ -4,16 +4,18 @@
 #include <algorithm>
 using namespace std;
 vector<int> real_image;
-int binarySearch(vector<int> array, int x, int low, int high) {
+
+/*int binarySearch(vector<int> array, int x, int low, int high) {
   
 	// Repeat until the pointers low and high meet each other
-  while (low <= high) {
+  while (low <= high) 
+  {
     int mid = low + (high - low) / 2;
 
-    if (array[mid] == x)
-      return mid;
+    if (image[mid] == array[idx])
+      location = mid;
 
-    if (array[mid] < x)
+    if (image[mid] < array[idx])
       low = mid + 1;
 
     else
@@ -21,12 +23,13 @@ int binarySearch(vector<int> array, int x, int low, int high) {
   }
 
   return -1;
-}
+}*/
 int main(void)
 {
     vector<int> array;
     vector<int> image;
-    int size {0}, temp, index;
+    int size {0}, temp, low = 0, high, mid = 0, location = -1;
+    
     cin>>size;
     for(int idx = 0; idx < size; idx++)
     {
@@ -35,10 +38,24 @@ int main(void)
         image.push_back(temp);
     }
     sort(image.begin(), image.end());
+    high = size;
+    
     for(int idx = 0; idx < size; idx++)
     {
+      low = 0, mid = 0, high = size;
+      while (low <= high) 
+    {
+      int mid = low + (high - low) / 2;
 
-       int location = binarySearch(image, , 0, size);
+      if (image[mid] == array[idx])
+        location = mid;
+
+      if (image[mid] < array[idx])
+        low = mid + 1;
+
+      else
+        high = mid - 1;
+      }
          if (location != -1) 
          {
             cout << location + 1 << ' ';

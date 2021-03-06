@@ -35,7 +35,7 @@ int main(void)
         if(center + x >= size || center + y >= size)
             cout<<"INVALID INPUT"<<'\n'; 
         else if(center + x < size || center + y < size)
-        cout<<array[center - x][center + y]<<'\n';
+        cout<<array[center - y][center + x]<<'\n';
     }
     }
     return 0;
