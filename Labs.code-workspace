@@ -7,7 +7,9 @@
 	"settings": {
 		"files.associations": {
 			"*.nasm": "nasm",
-			"algorithm": "cpp"
+			"algorithm": "cpp",
+			"iostream": "cpp",
+			"utility": "cpp"
 		}
 	}
 }

@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-
+/*
 int return_prime(int start, int number)
 {
     int test {0};
@@ -18,31 +18,61 @@ int return_prime(int start, int number)
     }
     return 0;
 }
-int print_numbers(int calc, int place, int number)
+bool check_prime(int number)
+{
+    int test = 0;
+    if(number == 0 || number == 1)
+        return false;
+    for(int idx = 1; idx <= number; idx++)
+    {
+        if(number % idx == 0)
+            test++;
+    }
+    if(test > 2)
+        return false;
+    else
+        return true;
+}
+int print_numbers(int calc, int place, int number, int to_give)
 {
     //Base Case
-    int hold, hold2 = 0, temp;
-    if(calc >= number)
+    int hold, temp;
+    if (place >= to_give)
     {
-        return 0;
-    }
-    for(int idx = 1; true; idx++)
+        int remainning = number - calc;
+        calc += remainning;
+        if(remainning != 0)
+            cout<<remainning;
+        if(check_prime(remainning) && place <= remainning)
+        {
+            cout<<' '<<1;
+        }
+            
+    } 
+    if(calc == number)
+        return 25; 
+    for(int idx = 1; idx < to_give; idx++)
     {
-        calc += idx;
+        hold = pow(place, idx);
+        if(hold > to_give)
+        {
+            if(hold == to_give)
+                idx++;
+            cout<<place<<' '<<idx-1<<' ';
+            calc += pow(place, idx-1);
+            break;
+        }
     }
-    cin>>temp;
-    cout<<"\ncalc:"<<calc;
+    to_give = number - calc;
     place = return_prime(place, number);
-    cout<<"next: "<<place<<endl;
-    print_numbers(calc, place, number);
+    print_numbers(calc, place, number, to_give);
     return 0;
-    
 }
 int main(void)
 {
     int n1;
     cin>>n1;
-
-    print_numbers(0, 2, n1);
+    cout<<print_numbers(0, 2, n1, n1);
     return 0;
-}
+}*/
+
