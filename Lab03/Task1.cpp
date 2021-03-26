@@ -1,65 +1,75 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-#define GOAL 2
 #define WAY 1
 #define BLOCK 0
-vector<pair<int, int>> paths;
-bool check_path(int **maze, int row , int coloumn, int rows, int coloumns)
+vector<pair<int, int>> paths; //stack...
+
+bool check_path(int **maze, int row, int column, int rows, int columns)
 {
     bool block = false;
     pair<int, int> test;
-    if(rows  == row || coloumns == coloumn)
-        return false;
-    cout<<row<<" "<<coloumn<<'\n';
-    for(int idx = row; idx < rows; idx++)
+    if(maze[row][column] == 2)
+        return true;
+    
+    for(int idx = row; idx <= rows; idx++)
     {
-        for(int kdx = coloumn; kdx < coloumns; kdx++)
-        {   
-            cout<<maze[idx][kdx];
-            if(maze[idx][kdx] == BLOCK || kdx == coloumns)
+        for(int kdx = column; kdx <= columns; kdx++)
+        {
+            if(maze[idx][kdx] == BLOCK)
             {
-                cout<<" BLocked";
                 block = true;
                 break;
             }
-            if(row != rows - 1)
-           if(maze[idx + 1][kdx] == WAY)
+
+            if(idx > 0)
             {
-                cout<<" one path added ";
-                paths.push_back(make_pair(idx+1, kdx));
-
-            }
-            /*
-            if(row != 0)
-                if(maze[idx - 1][kdx] == WAY)
+                if(maze[idx - 1][kdx] == WAY )
+                {
                     paths.push_back(make_pair(idx - 1, kdx));
+                }
+            }
+            if(idx < rows)
+            {
+                if(maze[idx + 1][kdx] >= WAY )
+                {
+                    paths.push_back(make_pair(idx + 1, kdx));
+                }
+            }
 
-            if(coloumn != 0)
-                if(maze[idx][kdx - 1] == WAY)
+            if(kdx > 0)
+            {
+                if(maze[idx][kdx - 1] == WAY )
+                {
                     paths.push_back(make_pair(idx, kdx - 1));
-
-            if(kdx != coloumns - 1)
-                if(maze[idx][kdx + 1] == WAY)
+                }
+            }
+            if(kdx < columns)
+            {
+                if(maze[idx] [kdx + 1] >= WAY )
+                {
                     paths.push_back(make_pair(idx, kdx + 1));
-*/
-            if (maze[idx][kdx] == 2)
+                }
+            }
+            if(maze[idx][kdx] == 2)
+            {
+                
                 return true;
-            
+            }
+             
+            maze[idx][kdx] = 0;
         }
-        cout<<'\n';
+
+        if(paths.size() == 0)
+            return false;
         if(block)
             break;
     }
-    if(paths.size() == 0)
-        return 0;
-    if(paths.size() >= 1)
-    {
-        test = paths[paths.size() - 1];
-        paths.pop_back();
-    }
-    return check_path(maze, test.first, test.second, rows, coloumns);
+    test = paths[paths.size() - 1];
+    paths.pop_back();
+    return check_path(maze, test.first, test.second, rows, columns);
 }
+
 int main(void)
 {
     int rows, coloumns;
@@ -77,11 +87,12 @@ int main(void)
             cin>>maze[idx][kdx];
         }
     }
+
     bool kill;
-    kill = check_path(maze, 0, 0, rows, coloumns);
+    kill = check_path(maze, 0, 0, rows - 1, coloumns - 1);
     if(kill)
-        cout<<"Yes"<<endl;
+        cout<<"Path Found"<<endl;
     else
-        cout<<"No";
+        cout<<"Path Not Found";
     return 0;
 }
