@@ -45,7 +45,7 @@ public:
 	}
 	void deleteNodeFromStart()
 	{
-		if (first->next!=NULL)
+		if (last!=NULL)
 		{
 			Node *t = first -> next;
 			first -> next = t -> next; //t->next may be second node or NULL
@@ -69,7 +69,7 @@ public:
 	}
 	void show()
 	{
-		if ( first -> next == NULL)
+		if ( last == NULL)
 			cout << "List is empty\n";
 		for ( Node *t = first -> next ; t != NULL ; t = t -> next )
 			cout << t -> data << ' ';
@@ -79,7 +79,8 @@ public:
 
 int main(){
 	LinkedList list;
-	
-	
+	list.addNodeAtStart(23);
+	list.deleteNodeFromStart();
+	list.show();
 	return 0;
 }
