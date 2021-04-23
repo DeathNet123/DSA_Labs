@@ -97,14 +97,8 @@ public:
 		cout << '\n';
 	}
 
-    int inOrder_sum(int i = 1, int sum = 0)
-    {
-		if (i >= size || x[i] == NONODE)
-			return sum;
-		inOrder_sum(2*i, sum);
-		sum += x[i];
-		inOrder_sum(2*i+1, sum);
-	}
+   
+
 	int findHeight(int i){
 		if (i>=size || x[i]==NONODE)	return -1;
 		
@@ -116,6 +110,16 @@ public:
 	}
 	int findHeight(){
 		return findHeight(1);
+	}
+    //........................................Main Question Problem.......................................................................
+     int inOrder_sum(int i = 1, int sum = 0)
+    {
+		if (i >= size || x[i] == NONODE)
+			return sum;
+		sum = inOrder_sum(2*i, sum);
+		sum += x[i];
+		sum = inOrder_sum(2*i+1, sum);
+        return sum;
 	}
 	~BSTreeArray(){	delete []x;	}
 };
