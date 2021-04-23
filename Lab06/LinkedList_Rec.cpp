@@ -35,6 +35,7 @@ public:
 	void addInOrder(int d){
 		first -> next = addInOrder(d, first->next);
 	}
+
 	Node* deleteNode(int d, Node* t){
 		if (t == NULL)   	return NULL;
 		if (t -> data == d){
@@ -48,19 +49,24 @@ public:
 		}
 		return t;
 	}
+
 	void deleteNode(int d){
 		if (first -> next == NULL)	return;
 		first -> next = deleteNode(d, first -> next) ;
 	}
+
 	void printRecReverse(Node *t){
 		if (t ==  NULL)		return;
 			printRecReverse( t -> next);
 		cout << t -> data << ' ';
+		
 	}
+
 	void printRecReverse(){
 		printRecReverse(first->next);
 		cout << '\n' ;
 	}
+	
 	void printRec(Node *t){
 		if (t ==  NULL)		return;
 		cout << t -> data << ' ';

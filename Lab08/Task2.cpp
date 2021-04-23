@@ -99,17 +99,31 @@ class Queue {
 int main() {
   Queue waiting ;
   int time = - 1, closing = 0;
-  for(int idx = 0; idx < 10; idx++)
+  for(int idx = 1; idx < 30; idx++)
     {
-        waiting.enQueue(idx);
+        if(closing < 4)
+        {
+            waiting.enQueue(idx);
+        }
         time++;
+        if(closing == 4)
+        {
+            cout<<"Shop closed\n";
+            closing = 5;
+        }
+            
         if(time == 3)
         {
             cout <<"Customer "<<waiting.chair<<" Served\n";
+            closing++;
             waiting.chair = "";
+            if(waiting.isEmpty())
+            break;
             waiting.deQueue();
             time = 0;
         }
+        
+
     }
   return 0;
 }

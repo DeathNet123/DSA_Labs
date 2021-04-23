@@ -34,6 +34,8 @@ int main(void)
         cin>>temp;
         array.push_back(temp);
     }
-    fine_division(0, size, difference, array);
+    int k = accumulate(array.begin(), array.begin() + 1, 0);
+    cout<<k;
+    //fine_division(0, size, difference, array);
     return 0;
 }
