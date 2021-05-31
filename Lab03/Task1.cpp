@@ -98,7 +98,6 @@ int main(void)
 }
 
 */
-
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -122,7 +121,7 @@ bool rat_maze(int **maze, int idx, int kdx, int rows, int columns)
         return false;
 
     }
-                 if(idx > 0)
+            if(idx > 0)
             {
                 if(maze[idx - 1][kdx] >= WAY )
                 {

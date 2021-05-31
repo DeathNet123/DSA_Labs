@@ -19,8 +19,10 @@ public:
 		last = NULL;
 	}
 	Node* addInOrder(int d, Node *t){
-		if ( t == NULL || t->data > d){
-			if (t == NULL){
+		if ( t == NULL || t->data > d)
+		{
+			if (t == NULL)
+			{
 				last = new Node(d);
 				return last;
 			}
@@ -36,7 +38,8 @@ public:
 		first -> next = addInOrder(d, first->next);
 	}
 
-	Node* deleteNode(int d, Node* t){
+	Node* deleteNode(int d, Node* t)
+	{
 		if (t == NULL)   	return NULL;
 		if (t -> data == d){
 			Node *toDelete = t -> next;

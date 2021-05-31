@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 #define NONODE -1
@@ -107,45 +109,60 @@ public:
 	}
 
     //------------------------------------Main QUestion-----------------------------------------------------
-    bool is_same (BSTreeArray &b, int i = 1, bool cane = true)
+    // No idea if this one is right and wrong let me know it is just an idea...
+    bool is_bst (int *b, int length, int i = 1, bool cane = true)
 	{
 		
-		if(findHeight() != b.findHeight())
-			return false;
-		if(x[i] == NONODE && b.x[i] != NONODE)
-			cane = false;
 		if (i >= size || x[i] == NONODE)
 		{		
 			return cane;
 		}	
 			
-		cane = is_same(b, 2*i, cane);
-		cout<<x[i] << 'b'<<b.x[i]<<'\n';
-		if(x[i] != b.x[i])
+		cane = is_bst(b, length, 2*i, cane);
+		if((x[i] != b[i]) && i >= length)
 		{
 			cane = false;
 		}
-		cane = is_same(b, 2*i+1, cane);
+		cane = is_bst(b, length, 2*i+1, cane);
 		return cane;
 	}
-	~BSTreeArray(){	delete []x;	}
+	
+    ~BSTreeArray(){	delete []x;	}
 };
-int main(){
+
+//Main solution------------------------------------ nOt completed
+void inOrder(int i, int *x, int size, vector<int>&arr)
+{
+		if (i >= size)
+			return;
+		inOrder(2*i, x, size, arr);
+        arr.push_back(x[i]);
+		inOrder(2*i+1, x, size, arr);
+}
+
+bool is_bst(int *x, int size)
+{
+    vector<int>arr;
+	vector<int>sorter;
+    inOrder(1, x, size, arr);
+	sorter = arr;
+	sort(sorter.begin(), sorter.end());
+	if(sorter == arr)
+		return true;
+    return false;
+}
+int main(void)
+{
 	srand(time(0));
-    int d[]={NONODE,25,36,48,54,29,NONODE,38,NONODE,NONODE,42,56,NONODE,NONODE,NONODE,43,NONODE,NONODE,NONODE,NONODE,
-				50,40,NONODE,NONODE,NONODE,NONODE,NONODE,NONODE,NONODE,NONODE,58,27};
-	int c[]={NONODE,25,36,48,54,29,NONODE,38,NONODE,NONODE,42,56,NONODE,NONODE,NONODE,43,NONODE,NONODE,NONODE,NONODE,
-				50,40,60,NONODE,NONODE,NONODE,NONODE,NONODE,NONODE,NONODE,58,27};
-	BSTreeArray tree(2048);
-	for (int i=1;i<32;i++)
+    BSTreeArray tree(2048);
+    int array[16]; //RANDOM ARRAY.....
+	for (int i = 1; i < 16; i++)
     {
-		tree.insert(d[i]);
+		int d = rand() % 10 + 1;
+		tree.insert(d); // THE TREE...
+        array[i] = d;
 	}
-    BSTreeArray tree2(2048);
-	for (int i=1;i<32;i++)
-    {
-		tree2.insert(c[i]);
-	}
-    cout<<tree.is_same(tree2)<<endl;
+	cout<<'\n';
+	cout<<is_bst(array, 16);
 	return 0;
 }

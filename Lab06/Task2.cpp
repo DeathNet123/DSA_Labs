@@ -53,43 +53,7 @@ public:
 		}
 		addInOrder(d, head -> next) ;
 	}
-	/*void addNodeAfter(int d1, int d2){
-		Node *t;
-		for (t = first->next ; t != NULL && t -> data != d1; t = t -> next);
-		if (t != NULL){
-			Node *newNode = new Node(d2);
-			newNode -> next = t -> next;
-			t -> next = newNode;
-			if (t == last)	last = newNode;
-		}
-	}
-	void deleteNodeFromStart(){
-		if (first->next!=NULL){
-			Node *t = first -> next;
-			first -> next = t -> next; //t->next may be second node or NULL
-			delete t;
-			if (first -> next == NULL)		last = NULL;
-		}
-	}
-	void deleteNodeFromEnd(){
-		if (last!=NULL){
-			if (first -> next == last)		deleteNodeFromStart();						
-			else{
-				Node *t = first;
-				for ( ; t->next != last; t = t -> next );//Move to second last node
-				delete t->next;
-				t->next = NULL;
-				last = t;
-			}
-		}
-	}
-	void show(){
-		if ( first -> next == NULL)
-			cout << "List is empty\n";
-		for ( Node *t = first -> next ; t != NULL ; t = t -> next )
-			cout << t -> data << ' ';
-		cout << '\n' ;
-	}*/
+	
 
     //Main Part Question two Part A..
     void swap(int d1, int d2)
@@ -108,18 +72,42 @@ public:
             return;
         else if (A->data == B->data)
             return;
-        
-        DNode p=*A;
-        *A=*B;
-        *B=p;
-
-        B->next = A->next;
+        DNode p = *A;
+		
+		*A=*B;
+		*B=p;
+		B->next = A->next;
         B->prev = A->prev;
         A->next = p.next;
         A->prev = p.prev;
     }
 
     //Question 2 Part B
+
+	void swap_nodes(DNode *node)
+	{
+		DNode *temp = node->next;
+		node->next = node->prev;
+		node->prev =  temp;
+	}
+
+	void reverse(DNode *node)
+	{
+		if(node == head)
+		{
+			swap_nodes(node);
+			return;
+		}
+		DNode *temp = node->next;
+		swap_nodes(node);
+		reverse(temp);
+	}
+
+	void reverse()
+	{
+		reverse(head-> next);
+	}
+	
 };
 
 int main(){
@@ -132,7 +120,7 @@ int main(){
 	list.addNodeInOrder(43);
 	list.addNodeInOrder(93);
 	list.print();
-	list.swap(23,43);
+	list.reverse();
     list.print();
 	return 0;
 }

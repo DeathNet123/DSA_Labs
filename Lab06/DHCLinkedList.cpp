@@ -17,9 +17,12 @@ public:
 	void addNodeAtHead(int d)
 	{
 		DNode *newNode = new DNode(d, head, head->next);
+		
 		head -> next -> prev = newNode;
 		head -> next = newNode;
 	}
+
+	
 	void addNodeAtTail(int d)
 	{
 		DNode *newNode =new DNode(d, head->prev, head);
@@ -67,6 +70,22 @@ public:
 			return;
 		}
 		addInOrder(d, head -> next) ;
+	}
+	void deleteNodeFromStart()
+	{
+		DNode * newNode = head -> next;
+		newNode->next->prev = head;
+		head -> next = newNode->next;
+		delete newNode;
+	}
+
+	void deleteNodeFromEnd()
+	{
+		DNode * newNode = head ->prev;
+		head->prev = newNode->prev;
+		newNode->prev->next = head;
+		delete newNode;
+
 	}
 	/*void addNodeAfter(int d1, int d2){
 		Node *t;
@@ -133,6 +152,7 @@ int main(){
 	list.print();*/
 	//list.addNodeAtHead(21);
 	//list.addNodeAtTail(36);
+	list.deleteNodeFromStart();
 	list.addNodeInOrder(23);
 	list.addNodeInOrder(13);
 	list.addNodeInOrder(53);
@@ -141,6 +161,15 @@ int main(){
 	list.addNodeInOrder(43);
 	list.addNodeInOrder(93);
 	list.print();
-	list.printR();
+	list.deleteNodeFromStart();
+	list.deleteNodeFromStart();
+	list.deleteNodeFromEnd();
+	list.deleteNodeFromEnd();
+	list.deleteNodeFromEnd();
+	list.deleteNodeFromEnd();
+	list.deleteNodeFromEnd();
+	list.deleteNodeFromEnd();
+	list.addNodeInOrder(23);
+	list.print();
 	return 0;
 }

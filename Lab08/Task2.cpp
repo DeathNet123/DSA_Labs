@@ -11,7 +11,8 @@ class Queue {
   string chair = "";
 
    public:
-  Queue() {
+  Queue() 
+  {
     front = -1;
     rear = -1;
   }
@@ -33,12 +34,15 @@ class Queue {
       return false;
   }
   // Adding an element
-  void enQueue(int element) {
-    if (isFull()) {
-      cout << "Customer "<<element <<" Refused\n";
-    } else 
+  void enQueue(int element) 
+  {
+    if (isFull()) 
     {
-        cout << "Customer "<<element <<" Accepted\n";
+      cout << "Customer "<<element <<" Refused\n";
+    } 
+    else 
+    {
+      cout << "Customer "<<element <<" Accepted\n";
       if (front == -1) front = 0;
       rear = (rear + 1) % SIZE;
       items[rear] = element;
@@ -51,14 +55,19 @@ class Queue {
     }
   }
   // Removing an element
-  int deQueue() {
+  int deQueue() 
+  {
     int element;
-    if (isEmpty()) {
+    if (isEmpty()) 
+    {
       cout << "Queue is empty" << endl;
       return (-1);
-    } else {
+    } 
+    else 
+    {
       element = items[front];
-      if (front == rear) {
+      if (front == rear) 
+      {
         front = -1;
         rear = -1;
       }

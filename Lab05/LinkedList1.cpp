@@ -43,6 +43,22 @@ public:
 			if (t == last)	last = newNode;
 		}
 	}
+	void cake(int d1, int d2)
+	{
+		Node *idx;
+		for(idx = first->next; idx != NULL; idx = idx ->next)
+		{
+			if(idx -> data == d1)
+			{
+				Node *newNode = new Node(d2);
+				newNode -> next = idx -> next;
+				idx -> next = newNode;
+				if(idx == last)	
+					last = newNode;
+				break;
+			}
+		}
+	}
 	void deleteNodeFromStart()
 	{
 		if (last!=NULL)
@@ -67,6 +83,19 @@ public:
 			}
 		}
 	}
+	string occurence_twice()
+	{
+		for(Node *idx = first -> next, int count = 1 ; idx != NULL ; idx = idx -> next, count++)
+		{
+			for(Node *kdx = idx -> next, int k_count = count + 1; kdx != NULL ; kdx = kdx->next, k_count++)
+				if(kdx->data == idx->data)
+				{
+					cout<<count<<' '<<k_count;
+					return "done";
+				}
+		}
+		return "Does not exist";
+	}
 	void show()
 	{
 		if ( last == NULL)
@@ -80,7 +109,13 @@ public:
 int main(){
 	LinkedList list;
 	list.addNodeAtStart(23);
-	list.deleteNodeFromStart();
+	list.addNodeAtEnd(23);
+	list.addNodeAtEnd(50);
+	list.addNodeAtEnd(60);
+	list.addNodeAtEnd(58);
+	list.show();
+	list.cake(60, 68);
+	list.cake(68, 98);
 	list.show();
 	return 0;
 }
