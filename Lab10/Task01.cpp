@@ -137,7 +137,7 @@ public:
 		if(t == NULL)
 			return;
 		removeNodes(t->left);
-		Node *temp = t->right;
+		BTNode *temp = t->right;
 		delete t;
 		removeNodes(temp);
 	}
@@ -159,7 +159,7 @@ int main(){
 	tree.inorder();*/
 	BST tree;
 	tree.add(5);
-	tree.add(8);
+	tree.add(4);
 	tree.add(10);
 	tree.preorder();
 	tree.inorder();
