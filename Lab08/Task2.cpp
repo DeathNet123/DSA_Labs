@@ -4,7 +4,8 @@
 
 using namespace std;
 
-class Queue {
+class Queue 
+{
    private:
   int items[SIZE], front, rear;
   public:
@@ -17,11 +18,14 @@ class Queue {
     rear = -1;
   }
   // Check if the queue is full
-  bool isFull() {
-    if (front == 0 && rear == SIZE - 1) {
+  bool isFull() 
+  {
+    if (front == 0 && rear == SIZE - 1) 
+    {
       return true;
     }
-    if (front == rear + 1) {
+    if (front == rear + 1) 
+    {
       return true;
     }
     return false;
@@ -48,7 +52,7 @@ class Queue {
       items[rear] = element;
       if(chair == "")
       {
-           chair = to_string(element);
+          chair = to_string(element);
           deQueue();
           cout<<"Customer "<<element <<" cutting chair Assigned\n";
       }
@@ -86,10 +90,12 @@ class Queue {
     }
   }
 
-  void display() {
+  void display() 
+  {
     // Function to display status of Circular Queue
     int i;
-    if (isEmpty()) {
+    if (isEmpty()) 
+    {
       cout << endl
          << "Empty Queue" << endl;
     } else {
@@ -105,7 +111,8 @@ class Queue {
   }
 };
 
-int main() {
+int main(void) 
+{
   Queue waiting ;
   int time = - 1, closing = 0;
   for(int idx = 1; idx < 30; idx++)

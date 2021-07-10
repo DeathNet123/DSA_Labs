@@ -5,7 +5,8 @@ using namespace std;
 
 #define DUMMY 0
 
-class DHCLList{
+class DHCLList
+{
 	DNode *head;
 public:
 	DHCLList(){	head = new DNode(DUMMY);	head -> next = head -> prev = head;	}
@@ -59,6 +60,7 @@ public:
     void swap(int d1, int d2)
     {
         DNode *A = NULL, *B = NULL;
+
         for(DNode *idx = head->next; idx != head; idx = idx -> next)
         {
             if(idx->data == d1)

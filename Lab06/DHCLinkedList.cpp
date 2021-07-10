@@ -5,7 +5,8 @@ using namespace std;
 
 #define DUMMY 0
 
-class DHCLList{
+class DHCLList
+{
 	DNode *head;
 public:
 	DHCLList()
@@ -126,7 +127,8 @@ public:
 	}*/
 };
 
-int main(){
+int main()
+{
 	DHCLList list;
 	/*list.addNodeAtHead(23);
 	list.addNodeAtHead(31);

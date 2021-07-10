@@ -23,6 +23,29 @@ class LinkedStackQueue
 		if (first->next==NULL)	throw (0);
 		return first -> next -> data ;
 	}
+	void set_min_front()
+	{
+		if(front->next == NULL)
+		{
+			cout<<"EMPTY";
+			return ;
+		}
+		int min = first->next->data;
+		Node *temp_min = first->next;
+		Node *idx = first->next;
+		for(; idx!= NULL; idx = idx->next)
+		{
+			if(idx->data < min)
+			{
+				temp_min = idx;
+				min = idx->data;
+			}
+		}
+		// now time for swapping......
+		int temp = first-> next ->data;
+		first->next ->data = temp_min->data;
+		temp_min->data = temp;
+	}
 public:
 	LinkedStackQueue()
 	{	
